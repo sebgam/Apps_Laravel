@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('users','UserController',['only'=> [
+     'index','store','show','update','destroy'
+ ]]);
