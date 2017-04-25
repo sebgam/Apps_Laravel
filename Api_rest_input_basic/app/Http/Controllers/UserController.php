@@ -81,7 +81,25 @@ class UserController extends Controller
    
     public function update(Request $request, $id) //--------actualizar dato $id---------------
     {
+        try {
+            $user= User::find($id);
 
+            if(!$user){
+                return response()->json('no se encuentra resultados',404);
+            }
+
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            return response()->json('User updated',200);
+
+
+        } catch (Exception $e) {
+            Log::critical("could not store user: {$e->getCode()} , {$e->getLine()},{$e->getMessage()}");//------error-----------
+            return response('semething bad',500);
+        }
     }
 
     /**
