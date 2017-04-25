@@ -180,6 +180,8 @@ return [
 
         // my providers-----------
         Styde\Seeder\SeederServiceProvider::class,
+        Laravel\Cashier\CashierServiceProvider::class,
+
 
     ],
 
